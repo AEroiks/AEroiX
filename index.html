@@ -236,29 +236,7 @@ function draw() {
 }
 
 setInterval(draw, 35);
-    const toggle = document.getElementById("colorToggle");
-const panel = document.getElementById("colorPanel");
-
-toggle.onclick = () => {
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
-};
-
-document.querySelectorAll(".color").forEach(btn => {
-    btn.onclick = () => {
-        const color = btn.getAttribute("data-color");
-
-        document.body.style.color = color;
-
-        document.querySelectorAll("h1, h2").forEach(el => {
-            el.style.textShadow = `0 0 15px ${color}`;
-        });
-
-        document.querySelectorAll(".box").forEach(box => {
-            box.style.border = `1px solid ${color}`;
-            box.style.boxShadow = `0 0 10px ${color}`;
-        });
-    };
-});
+    
     let matrixColor = "red";
 
 document.querySelectorAll(".color").forEach(btn => {
