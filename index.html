@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>AEroiX</title>
@@ -7,53 +7,49 @@
 <style>
 body {
     background: black;
-    color: red;
+    color: #ff4d4d;
     font-family: monospace;
     text-align: center;
-    margin: 0;
 }
 
 a { text-decoration: none; color: inherit; }
 
 canvas {
     position: fixed;
-    top: 0;
-    left: 0;
     z-index: -1;
 }
 
 h1 {
-    font-size: 60px;
-    text-shadow: 0 0 30px red;
+    font-size: 50px;
+    letter-spacing: 3px;
 }
 
 p, #contador {
-    font-size: 24px;
-    text-shadow: 0 0 15px red;
+    font-size: 20px;
+    opacity: 0.8;
 }
 
 h2 {
-    font-size: 28px;
     margin-top: 50px;
-    text-shadow: 0 0 20px red;
+    font-size: 24px;
+    opacity: 0.7;
 }
 
 .box {
-    width: 240px;
-    height: 110px;
-    border: 2px solid red;
+    width: 220px;
+    height: 100px;
+    border: 1px solid rgba(255,0,0,0.4);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 18px;
+    background: rgba(255,0,0,0.05);
 }
 
 .box:hover {
-    background: red;
-    color: black;
-    box-shadow: 0 0 40px red;
+    border: 1px solid red;
+    background: rgba(255,0,0,0.15);
 }
 </style>
 </head>
@@ -62,16 +58,16 @@ h2 {
 <canvas id="matrix"></canvas>
 
 <h1>AEroiX</h1>
-<p>ESCANEANDO DATOS...</p>
+<p>ESCANEANDO SISTEMA...</p>
 <div id="contador"></div>
 
-<h2>REDES</h2>
-<a href="https://tiktok.com" target="_blank"><div class="box">TikTok</div></a>
-<a href="https://youtube.com" target="_blank"><div class="box">YouTube</div></a>
+<h2>LINKS</h2>
+<a href="#"><div class="box">TikTok</div></a>
+<a href="#"><div class="box">YouTube</div></a>
 
 <script>
 let v=localStorage.getItem("v")||0;v++;localStorage.setItem("v",v);
-document.getElementById("contador").innerText="VISITAS: "+v;
+document.getElementById("contador").innerText="USUARIOS: "+v;
 
 const c=document.getElementById("matrix"),x=c.getContext("2d");
 c.height=innerHeight;c.width=innerWidth;
@@ -80,7 +76,7 @@ for(let i=0;i<cols;i++)d[i]=1;
 setInterval(()=>{
 x.fillStyle="rgba(0,0,0,0.05)";
 x.fillRect(0,0,c.width,c.height);
-x.fillStyle="red";
+x.fillStyle="#ff4d4d";
 x.font=f+"px monospace";
 d.forEach((y,i)=>{
 x.fillText(l[Math.random()*l.length|0],i*f,y*f);
