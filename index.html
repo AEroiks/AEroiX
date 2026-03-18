@@ -12,38 +12,54 @@ body {
     text-align: center;
 }
 
-/* Título */
+/* Título principal */
 h1 {
     font-size: 50px;
+    text-shadow: 0 0 15px red;
+    margin-top: 20px;
+}
+
+/* Subtítulos (categorías) */
+h2 {
+    border-bottom: 1px solid red;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-top: 40px;
     text-shadow: 0 0 10px red;
 }
 
-/* Caja principal */
+/* Contenedor general */
 .container {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
-/* Botones tipo cuadro */
+/* Grupo de cajas */
+.categoria {
+    margin-bottom: 20px;
+}
+
+/* Casillas */
 .box {
     display: inline-block;
-    width: 200px;
-    height: 100px;
+    width: 180px;
+    height: 90px;
     border: 2px solid red;
     margin: 10px;
-    line-height: 100px;
+    line-height: 90px;
     cursor: pointer;
     transition: 0.3s;
 }
 
+/* Efecto hover */
 .box:hover {
     background: red;
     color: black;
     box-shadow: 0 0 20px red;
 }
 
-/* contador */
+/* Contador */
 #contador {
-    margin-top: 20px;
+    margin-top: 15px;
     font-size: 18px;
 }
 </style>
@@ -53,33 +69,33 @@ h1 {
 <body>
 
 <h1>AEroiX</h1>
-
 <p>ESCANEANDO BASE DE DATOS...</p>
 
 <div id="contador">Cargando visitas...</div>
 
 <div class="container">
 
-<a href="https://google.com" target="_blank">
-<div class="box">Link 1</div>
-</a>
+<h2>REDES SOCIALES</h2>
+<div class="categoria">
+    <a href="https://tiktok.com" target="_blank"><div class="box">TikTok</div></a>
+    <a href="https://youtube.com" target="_blank"><div class="box">YouTube</div></a>
+</div>
 
-<a href="https://youtube.com" target="_blank">
-<div class="box">Link 2</div>
-</a>
+<h2>COMUNIDAD</h2>
+<div class="categoria">
+    <a href="https://discord.com" target="_blank"><div class="box">Discord</div></a>
+    <a href="https://instagram.com" target="_blank"><div class="box">Instagram</div></a>
+</div>
 
-<a href="https://discord.com" target="_blank">
-<div class="box">Link 3</div>
-</a>
-
-<a href="https://tiktok.com" target="_blank">
-<div class="box">Link 4</div>
-</a>
+<h2>EXTRAS</h2>
+<div class="categoria">
+    <a href="https://google.com" target="_blank"><div class="box">Web</div></a>
+</div>
 
 </div>
 
 <script>
-/* contador simple */
+/* Contador básico */
 let visitas = localStorage.getItem("visitas");
 
 if (!visitas) {
