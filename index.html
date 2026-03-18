@@ -69,13 +69,18 @@ h2 {
 
     color: #ffffff;
 
-    /* 🔥 TRANSPARENTE REAL */
+    /* borde al texto (negro + rojo suave) */
+    text-shadow: 
+        0 0 2px black,
+        0 0 4px rgba(255, 0, 0, 0.5);
+
+    /* transparente para ver la matrix */
     background: transparent;
 
     /* borde suave */
     border: 1px solid rgba(255, 255, 255, 0.25);
 
-    /* ligera sombra para que destaque */
+    /* sombra ligera */
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 
     transition: 0.25s ease;
@@ -84,13 +89,13 @@ h2 {
 .box:hover {
     transform: translateY(-3px);
 
-    /* rojo suave transparente */
+    /* rojo suave (no gris) */
     background: rgba(255, 0, 0, 0.08);
 
-    /* borde rojo suave */
+    /* borde rojo elegante */
     border: 1px solid rgba(255, 80, 80, 0.5);
 
-    /* brillo leve rojo */
+    /* brillo leve */
     box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
 }
 </style>
