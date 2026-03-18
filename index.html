@@ -5,6 +5,51 @@
 <title>AEroiX</title>
 
 <style>
+    #colorBar {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: rgba(0,0,0,0.6);
+    padding: 8px 15px;
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 999;
+}
+
+#colorBar span {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.color {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: 0.2s;
+}
+
+.color:hover {
+    transform: scale(1.2);
+}
+
+.color[data-color="red"] { background: red; }
+.color[data-color="white"] { background: white; }
+.color[data-color="pink"] { background: pink; }
+.color[data-color="purple"] { background: purple; }
+.color[data-color="orange"] { background: orange; }
+.color[data-color="cyan"] { background: cyan; }
+.color[data-color="lime"] { background: lime; }
+.color[data-color="blue"] { background: blue; }
 body {
     background: black;
     color: red;
@@ -201,6 +246,25 @@ toggle.onclick = () => {
 document.querySelectorAll(".color").forEach(btn => {
     btn.onclick = () => {
         const color = btn.getAttribute("data-color");
+
+        document.body.style.color = color;
+
+        document.querySelectorAll("h1, h2").forEach(el => {
+            el.style.textShadow = `0 0 15px ${color}`;
+        });
+
+        document.querySelectorAll(".box").forEach(box => {
+            box.style.border = `1px solid ${color}`;
+            box.style.boxShadow = `0 0 10px ${color}`;
+        });
+    };
+});
+    let matrixColor = "red";
+
+document.querySelectorAll(".color").forEach(btn => {
+    btn.onclick = () => {
+        const color = btn.getAttribute("data-color");
+        matrixColor = color;
 
         document.body.style.color = color;
 
