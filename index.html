@@ -11,7 +11,41 @@ body {
     font-family: monospace;
     text-align: center;
     margin: 0;
+    
 }
+    #colorToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+#colorPanel {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+.color {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.color[data-color="red"] { background: red; }
+.color[data-color="cyan"] { background: cyan; }
+.color[data-color="lime"] { background: lime; }
+.color[data-color="purple"] { background: purple; }
 
 /* quitar azul links */
 a {
@@ -154,6 +188,29 @@ function draw() {
 }
 
 setInterval(draw, 35);
+    const toggle = document.getElementById("colorToggle");
+const panel = document.getElementById("colorPanel");
+
+toggle.onclick = () => {
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+};
+
+document.querySelectorAll(".color").forEach(btn => {
+    btn.onclick = () => {
+        const color = btn.getAttribute("data-color");
+
+        document.body.style.color = color;
+
+        document.querySelectorAll("h1, h2").forEach(el => {
+            el.style.textShadow = `0 0 15px ${color}`;
+        });
+
+        document.querySelectorAll(".box").forEach(box => {
+            box.style.border = `1px solid ${color}`;
+            box.style.boxShadow = `0 0 10px ${color}`;
+        });
+    };
+});
 </script>
 
 </body>
