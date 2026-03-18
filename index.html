@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>AEroiX</title>
@@ -9,68 +9,132 @@ body {
     background: black;
     color: red;
     font-family: monospace;
-    padding: 20px;
+    text-align: center;
+    margin: 0;
 }
 
-a { text-decoration: none; color: inherit; }
+/* quitar azul links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
+/* matrix */
 canvas {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: -1;
 }
 
+/* título */
 h1 {
-    font-size: 40px;
+    font-size: 55px;
+    text-shadow: 0 0 20px red;
+    margin-top: 20px;
 }
 
-p, #contador {
-    font-size: 18px;
+/* textos grandes */
+p {
+    font-size: 22px;
+    text-shadow: 0 0 10px red;
 }
 
+/* contador */
+#contador {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* categorías */
+h2 {
+    margin-top: 50px;
+    font-size: 26px;
+    text-shadow: 0 0 10px red;
+}
+
+/* cajas */
 .box {
-    border: 1px solid red;
-    padding: 15px;
-    margin: 10px auto;
-    width: 300px;
-    text-align: left;
+    width: 230px;
+    height: 100px;
+    border: 2px solid rgba(255,0,0,0.6);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #ff4d4d;
+
+    background: rgba(255,0,0,0.05);
+    transition: 0.3s;
 }
 
 .box:hover {
-    background: red;
-    color: black;
+    background: rgba(255,0,0,0.2);
+    border: 2px solid red;
+    box-shadow: 0 0 20px red;
 }
 </style>
 </head>
 
 <body>
+
 <canvas id="matrix"></canvas>
 
-<h1>> AEroiX SYSTEM</h1>
-<p>> INICIANDO...</p>
-<p id="contador"></p>
+<h1>AEroiX</h1>
+<p>ESCANEANDO DATOS...</p>
+<div id="contador">VISITAS: 0</div>
 
-<a href="#"><div class="box">> TikTok</div></a>
-<a href="#"><div class="box">> YouTube</div></a>
+<h2>REDES</h2>
+<a href="https://tiktok.com" target="_blank"><div class="box">TikTok</div></a>
+<a href="https://youtube.com" target="_blank"><div class="box">YouTube</div></a>
+
+<h2>COMUNIDAD</h2>
+<a href="https://discord.com" target="_blank"><div class="box">Discord</div></a>
 
 <script>
-let v=localStorage.getItem("v")||0;v++;localStorage.setItem("v",v);
-document.getElementById("contador").innerText="> VISITAS: "+v;
+/* contador simple estable */
+let visitas = localStorage.getItem("visitas") || 0;
+visitas++;
+localStorage.setItem("visitas", visitas);
+document.getElementById("contador").innerText = "VISITAS: " + visitas;
 
-const c=document.getElementById("matrix"),x=c.getContext("2d");
-c.height=innerHeight;c.width=innerWidth;
-let l="01AEroiX".split(""),f=14,cols=c.width/f,d=[];
-for(let i=0;i<cols;i++)d[i]=1;
-setInterval(()=>{
-x.fillStyle="rgba(0,0,0,0.05)";
-x.fillRect(0,0,c.width,c.height);
-x.fillStyle="red";
-x.font=f+"px monospace";
-d.forEach((y,i)=>{
-x.fillText(l[Math.random()*l.length|0],i*f,y*f);
-if(y*f>c.height&&Math.random()>0.95)d[i]=0;
-d[i]++;
-});
-},35);
+/* MATRIX */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let letras = "0123456789AEroiX".split("");
+let fontSize = 14;
+let columns = canvas.width / fontSize;
+let drops = [];
+
+for (let x = 0; x < columns; x++) drops[x] = 1;
+
+function draw() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "red";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        let text = letras[Math.floor(Math.random() * letras.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.95)
+            drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 35);
 </script>
+
 </body>
 </html>
