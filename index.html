@@ -10,125 +10,84 @@ body {
     color: red;
     font-family: monospace;
     text-align: center;
+    margin: 0;
 }
 
-/* Título */
+a { text-decoration: none; color: inherit; }
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 h1 {
-    font-size: 50px;
+    font-size: 60px;
+    text-shadow: 0 0 30px red;
+}
+
+p, #contador {
+    font-size: 24px;
     text-shadow: 0 0 15px red;
-    margin-top: 20px;
 }
 
-/* Categorías */
 h2 {
-    margin-top: 60px;
-    margin-bottom: 10px;
-    text-shadow: 0 0 10px red;
-    border-bottom: 1px solid red;
-    display: inline-block;
-    padding-bottom: 5px;
+    font-size: 28px;
+    margin-top: 50px;
+    text-shadow: 0 0 20px red;
 }
 
-/* Contenedor */
-.container {
-    width: 80%;
-    margin: auto;
-}
-
-/* Grupo de cajas */
-.categoria {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-
-/* Casillas */
 .box {
     width: 240px;
     height: 110px;
-    border: 2px solid rgba(255, 0, 0, 0.6);
-    display: flex;
+    border: 2px solid red;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: 0.3s;
-
-    /* TEXTO */
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    color: #ff4d4d;
-
-    /* EFECTO SUAVE */
-    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
-
-    /* FONDO SUAVE */
-    background: rgba(255, 0, 0, 0.05);
+    margin: 10px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-/* Hover */
 .box:hover {
-    background: rgba(255, 0, 0, 0.15);
-    border: 2px solid red;
-
-    box-shadow: 0 0 15px red;
-
-    transform: scale(1.05);
-}
-
-/* Contador */
-#contador {
-    margin-top: 15px;
-    font-size: 18px;
+    background: red;
+    color: black;
+    box-shadow: 0 0 40px red;
 }
 </style>
-
 </head>
 
 <body>
+<canvas id="matrix"></canvas>
 
 <h1>AEroiX</h1>
-<p>ESCANEANDO BASE DE DATOS...</p>
+<p>ESCANEANDO DATOS...</p>
+<div id="contador"></div>
 
-<div id="contador">Cargando visitas...</div>
-
-<div class="container">
-
-<h2>JUEGOS/ROLEPLAY +18</h2>
-<div class="categoria">
-    <a href="https://www.nutaku.net" target="_blank""><div class="box">Nutaku</div></a>
-    <a href="https://store.steampowered.com/app/2692440/LoveCraft/" target="_blank"><div class="box">LoveCraft</div></a>
-</div>
-
-<h2>COMUNIDAD</h2>
-<div class="categoria">
-    <a href="https://www.nutaku.net/home/" target="_blank"><div class="box">Discord</div></a>
-    <a href="https://instagram.com" target="_blank"><div class="box">Instagram</div></a>
-</div>
-
-<h2>EXTRAS</h2>
-<div class="categoria">
-    <a href="https://google.com" target="_blank"><div class="box">Web</div></a>
-</div>
-
-</div>
+<h2>REDES</h2>
+<a href="https://tiktok.com" target="_blank"><div class="box">TikTok</div></a>
+<a href="https://youtube.com" target="_blank"><div class="box">YouTube</div></a>
 
 <script>
-let visitas = localStorage.getItem("visitas");
+let v=localStorage.getItem("v")||0;v++;localStorage.setItem("v",v);
+document.getElementById("contador").innerText="VISITAS: "+v;
 
-if (!visitas) {
-    visitas = 1;
-} else {
-    visitas = parseInt(visitas) + 1;
-}
-
-localStorage.setItem("visitas", visitas);
-
-document.getElementById("contador").innerText =
-    "TOTAL VISITAS: " + visitas;
+const c=document.getElementById("matrix"),x=c.getContext("2d");
+c.height=innerHeight;c.width=innerWidth;
+let l="0123456789".split(""),f=14,cols=c.width/f,d=[];
+for(let i=0;i<cols;i++)d[i]=1;
+setInterval(()=>{
+x.fillStyle="rgba(0,0,0,0.05)";
+x.fillRect(0,0,c.width,c.height);
+x.fillStyle="red";
+x.font=f+"px monospace";
+d.forEach((y,i)=>{
+x.fillText(l[Math.random()*l.length|0],i*f,y*f);
+if(y*f>c.height&&Math.random()>0.95)d[i]=0;
+d[i]++;
+});
+},35);
 </script>
-
 </body>
 </html>
