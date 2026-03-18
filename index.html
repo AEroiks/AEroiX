@@ -57,7 +57,8 @@ h2 {
 .box {
     width: 230px;
     height: 100px;
-    border: 2px solid rgba(255,0,0,0.6);
+    border-radius: 12px;
+
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -65,16 +66,30 @@ h2 {
 
     font-size: 20px;
     letter-spacing: 2px;
-    color: #ff4d4d;
 
-    background: rgba(255,0,0,0.05);
-    transition: 0.3s;
+    color: #ddd;
+
+    /* estilo más suave */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+
+    transition: 0.25s ease;
 }
 
 .box:hover {
-    background: rgba(255,0,0,0.2);
-    border: 2px solid red;
-    box-shadow: 0 0 20px red;
+    transform: translateY(-3px);
+
+    /* sombra más elegante */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+
+    /* leve cambio, sin rojo fuerte */
+    border: 1px solid rgba(100, 150, 255, 0.3);
+
+    background: rgba(255, 255, 255, 0.08);
 }
 </style>
 </head>
