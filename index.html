@@ -12,45 +12,51 @@ body {
     text-align: center;
 }
 
-/* Título principal */
+/* Título */
 h1 {
     font-size: 50px;
     text-shadow: 0 0 15px red;
     margin-top: 20px;
 }
 
-/* Subtítulos (categorías) */
+/* Categorías */
 h2 {
+    margin-top: 60px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px red;
     border-bottom: 1px solid red;
     display: inline-block;
     padding-bottom: 5px;
-    margin-top: 40px;
-    text-shadow: 0 0 10px red;
 }
 
-/* Contenedor general */
+/* Contenedor */
 .container {
-    margin-top: 20px;
+    width: 80%;
+    margin: auto;
 }
 
 /* Grupo de cajas */
 .categoria {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
 /* Casillas */
 .box {
-    display: inline-block;
     width: 180px;
     height: 90px;
     border: 2px solid red;
-    margin: 10px;
-    line-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: 0.3s;
 }
 
-/* Efecto hover */
+/* Hover */
 .box:hover {
     background: red;
     color: black;
@@ -95,7 +101,6 @@ h2 {
 </div>
 
 <script>
-/* Contador básico */
 let visitas = localStorage.getItem("visitas");
 
 if (!visitas) {
