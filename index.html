@@ -279,7 +279,7 @@ setInterval(draw, 35);
 document.querySelectorAll(".color").forEach(btn => {
     btn.onclick = () => {
         const color = btn.getAttribute("data-color");
-document.documentElement.style.setProperty("--hoverColor", color + "66");
+document.documentElement.style.setProperty("--hoverColor", color);
         // 🔥 esto hace que la matrix funcione
         matrixColor = color;
 
