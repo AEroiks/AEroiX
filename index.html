@@ -12,7 +12,7 @@
     transform: translateY(-50%);
 
     display: flex;
-    flex-direction: column; /* 🔥 vertical */
+    flex-direction: column;
     align-items: center;
     gap: 10px;
 
@@ -22,6 +22,49 @@
 
     border: 1px solid rgba(255,255,255,0.2);
     z-index: 999;
+}
+
+#musicPanel {
+    position: fixed;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+
+    padding: 10px;
+    width: 180px;
+
+    z-index: 999;
+}
+
+#musicPanel h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.song {
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    margin: 4px 0;
+    transition: 0.2s;
+}
+
+.song:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+#volumeControl {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+#volumeSlider {
+    width: 100%;
+    cursor: pointer;
 }
 .grid-3 {
     display: grid;
@@ -200,7 +243,21 @@ h2 {
 </div>
     
 <canvas id="matrix"></canvas>
+<div id="musicPanel">
+    <h3>🎧 Música</h3>
 
+    <div class="song" onclick="playMusic('music1.mp3')">Track 1</div>
+    <div class="song" onclick="playMusic('music2.mp3')">Track 2</div>
+    <div class="song" onclick="playMusic('music3.mp3')">Track 3</div>
+
+    <div id="volumeControl">
+        🔊
+        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volumeSlider">
+    </div>
+</div>
+
+<audio id="player"></audio>
+    
 <h1>A̼E̼r̼o̼i̼X̼ S̼y̼s̼t̼e̼m̼ +̼1̼8</h1>
 <p>P͟͞r͟͞o͟͞c͟͞e͟͞s͟͞a͟͞n͟͞d͟͞o͟͞ d͟͞a͟͞t͟͞o͟͞s͟͞...</p>
 
@@ -273,7 +330,22 @@ function draw() {
 }
 
 setInterval(draw, 35);
-    
+const player = document.getElementById("player");
+const volumeSlider = document.getElementById("volumeSlider");
+
+// reproducir música
+function playMusic(src) {
+    player.src = src;
+    player.play();
+}
+
+// volumen inicial
+player.volume = volumeSlider.value;
+
+// cambiar volumen en tiempo real
+volumeSlider.oninput = () => {
+    player.volume = volumeSlider.value;
+};
     let matrixColor = "red";
 
 document.querySelectorAll(".color").forEach(btn => {
