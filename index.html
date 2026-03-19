@@ -281,6 +281,19 @@ document.querySelectorAll(".color").forEach(btn => {
         document.querySelectorAll(".box").forEach(box => {
             box.style.border = `1px solid ${color}`;
             box.style.boxShadow = `0 0 10px ${color}`;
+
+            // 🔥 EFECTO HOVER DINÁMICO
+            box.onmouseenter = () => {
+                box.style.background = color + "22";
+                box.style.boxShadow = `0 0 15px ${color}`;
+                box.style.color = color;
+            };
+
+            box.onmouseleave = () => {
+                box.style.background = "transparent";
+                box.style.boxShadow = `0 0 10px ${color}`;
+                box.style.color = color;
+            };
         });
     };
 });
