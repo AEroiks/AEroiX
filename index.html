@@ -275,12 +275,11 @@ setInterval(draw, 35);
 document.querySelectorAll(".color").forEach(btn => {
     btn.onclick = () => {
         const color = btn.getAttribute("data-color");
-document.documentElement.style.setProperty("--hoverColor", color + "33");
-        
-        // 🔥 IMPORTANTE: esto hace que la matrix funcione
+
+        // 🔥 esto hace que la matrix funcione
         matrixColor = color;
 
-        // 🔥 cambia TODO el texto al instante
+        // 🔥 color global
         document.body.style.color = color;
 
         document.querySelectorAll("h1, h2, p, #contador").forEach(el => {
@@ -289,12 +288,15 @@ document.documentElement.style.setProperty("--hoverColor", color + "33");
         });
 
         document.querySelectorAll(".box").forEach(box => {
-            // color base
             box.style.border = `1px solid ${color}`;
             box.style.boxShadow = `0 0 10px ${color}`;
             box.style.color = color;
+        });
 
-            // hover (solo brillo)
+        // 🔥 clave para el hover dinámico
+        document.documentElement.style.setProperty("--hoverColor", color + "33");
+    };
+});
 </script>
 
 </body>
