@@ -270,28 +270,35 @@ setInterval(draw, 35);
 document.querySelectorAll(".color").forEach(btn => {
     btn.onclick = () => {
         const color = btn.getAttribute("data-color");
+
+        // 🔥 IMPORTANTE: esto hace que la matrix funcione
         matrixColor = color;
 
+        // 🔥 cambia TODO el texto al instante
         document.body.style.color = color;
 
-        document.querySelectorAll("h1, h2").forEach(el => {
-            el.style.textShadow = `0 0 15px ${color}`;
+        document.querySelectorAll("h1, h2, p, #contador").forEach(el => {
+            el.style.color = color;
+            el.style.textShadow = `0 0 10px ${color}`;
         });
 
         document.querySelectorAll(".box").forEach(box => {
-    box.style.border = `1px solid ${color}`;
-    box.style.boxShadow = `0 0 10px ${color}`;
-    box.style.color = color; // 🔥 CAMBIO CLAVE (texto inmediato)
+            // color base
+            box.style.border = `1px solid ${color}`;
+            box.style.boxShadow = `0 0 10px ${color}`;
+            box.style.color = color;
 
-    // hover SOLO ilumina, no cambia color base
-    box.onmouseenter = () => {
-        box.style.background = color + "22";
-        box.style.boxShadow = `0 0 15px ${color}`;
-    };
+            // hover (solo brillo)
+            box.onmouseenter = () => {
+                box.style.background = color + "22";
+                box.style.boxShadow = `0 0 15px ${color}`;
+            };
 
-    box.onmouseleave = () => {
-        box.style.background = "transparent";
-        box.style.boxShadow = `0 0 10px ${color}`;
+            box.onmouseleave = () => {
+                box.style.background = "transparent";
+                box.style.boxShadow = `0 0 10px ${color}`;
+            };
+        });
     };
 });
 </script>
