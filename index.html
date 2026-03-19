@@ -175,9 +175,9 @@ h2 {
     border: 1px solid var(--hoverColor);
 
     box-shadow:
-        0 0 10px var(--hoverColor),
-        0 0 20px var(--hoverColor),
-        0 0 30px var(--hoverColor);
+        0 0 15px var(--hoverColor),
+        0 0 30px var(--hoverColor),
+        0 0 45px var(--hoverColor);
 }
 </style>
 </head>
@@ -275,7 +275,7 @@ setInterval(draw, 35);
 document.querySelectorAll(".color").forEach(btn => {
     btn.onclick = () => {
         const color = btn.getAttribute("data-color");
-
+document.documentElement.style.setProperty("--hoverColor", color + "66");
         // 🔥 esto hace que la matrix funcione
         matrixColor = color;
 
