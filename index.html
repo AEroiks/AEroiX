@@ -278,7 +278,18 @@ setInterval(draw, 35);
 
 document.querySelectorAll(".color").forEach(btn => {
     btn.onclick = () => {
-        const color = btn.getAttribute("data-color");
+        const colorMap = {
+    red: "#ff0000",
+    white: "#ffffff",
+    pink: "#ff4dd2",
+    purple: "#a020f0",
+    orange: "#ff8800",
+    cyan: "#00ffff",
+    lime: "#00ff00",
+    blue: "#0066ff"
+};
+
+const color = colorMap[btn.getAttribute("data-color")];
 document.documentElement.style.setProperty("--hoverColor", color);
         // 🔥 esto hace que la matrix funcione
         matrixColor = color;
@@ -298,7 +309,7 @@ document.documentElement.style.setProperty("--hoverColor", color);
         });
 
         // 🔥 clave para el hover dinámico
-        document.documentElement.style.setProperty("--hoverColor", color + "33");
+        document.documentElement.style.setProperty("--hoverColor", color);
     };
 });
 </script>
