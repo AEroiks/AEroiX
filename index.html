@@ -57,13 +57,16 @@
 .color[data-color="cyan"] { background: cyan; }
 .color[data-color="lime"] { background: lime; }
 .color[data-color="blue"] { background: blue; }
+:root {
+    --hoverColor: rgba(255, 0, 0, 0.4); /* color inicial */
+}
+
 body {
     background: black;
     color: red;
     font-family: monospace;
     text-align: center;
     margin: 0;
-    
 }
     #colorToggle {
     position: fixed;
@@ -170,6 +173,7 @@ h2 {
 
 .box:hover {
     transform: translateY(-3px);
+
     background: var(--hoverColor);
 
     border: 1px solid var(--hoverColor);
@@ -177,7 +181,7 @@ h2 {
     box-shadow:
         0 0 15px var(--hoverColor),
         0 0 30px var(--hoverColor),
-        0 0 45px var(--hoverColor);
+        0 0 60px var(--hoverColor);
 }
 </style>
 </head>
